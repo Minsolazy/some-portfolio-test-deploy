@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="th" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MT Portfolio | มินตั้น - ธัชกร ตรีเมธา (ม.5/8) Game Developer</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#F5F3FF',
+                            100: '#EDE9FE',
+                            200: '#DDD6FE',
+                            300: '#C996EB', // Soft Lavender / Purple
+                            400: '#A5A2EB', // Blue Lavender Primary
+                            500: '#8B5CF6',
+                            600: '#7C3AED',
+                            700: '#6D28D9',
+                            800: '#5B21B6',
+                            900: '#1E1B4B',
+                        },
+                        accent: {
+                            pink: '#FFA4EA',
+                            cream: '#FBEAFF',
+                            sky: '#38BDF8',
+                            emerald: '#34D399',
+                            amber: '#FBBF24'
+                        }
+                    },
+                    fontFamily: {
+                        prompt: ['Prompt', 'sans-serif'],
+                        poppins: ['Poppins', 'sans-serif']
+                    },
+                    boxShadow: {
+                        'glow': '0 0 25px -5px rgba(165, 162, 235, 0.4)',
+                        'glow-pink': '0 0 25px -5px rgba(255, 164, 234, 0.4)',
+                        'glass': '0 8px 32px 0 rgba(31, 38, 135, 0.07)'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Fonts: Prompt & Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        body {
+            font-family: 'Prompt', 'Poppins', sans-serif;
+            background-color: #F8FAFC;
+            color: #1E1B4B;
+            overflow-x: hidden;
+        }
+
+        /* Glassmorphism utility */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(201, 150, 235, 0.25);
+        }
+
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.88);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+
+        /* Gradient Text */
+        .gradient-text {
+            background: linear-gradient(135deg, #7C3AED 0%, #A5A2EB 50%, #EC4899 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .gradient-bg-main {
+            background: linear-gradient(135deg, #F5F3FF 0%, #FBEAFF 50%, #EEF2FF 100%);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #F1F5F9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #C996EB;
+            border-radius: 5px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #8B5CF6;
+        }
+
+        /* Float animation */
+        @keyframes floatSlow {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(2deg); }
+        }
+        .animate-float {
+            animation: floatSlow 5s ease-in-out infinite;
+        }
+
+        /* Pulse glow */
+        @keyframes pulseGlow {
+            0%, 100% { opacity: 0.6; transform: scale(1); }
+            50% { opacity: 0.9; transform: scale(1.05); }
+        }
+        .animate-pulse-glow {
+            animation: pulseGlow 4s infinite ease-in-out;
+        }
+    </style>
+</head>
+<body class="gradient-bg-main min-h-screen text-slate-800 antialiased selection:bg-brand-200 selection:text-brand-900">
+
+    <!-- Navigation (Minimal Logo + Links + CTA) -->
+    <header class="sticky top-0 z-50 transition-all duration-300" id="main-header">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+            <div class="glass-nav rounded-2xl px-5 py-3 flex items-center justify-between shadow-glass border border-brand-200/50">
+                <!-- Logo -->
+                <a href="#hero" class="flex items-center space-x-3 group">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-600 via-brand-400 to-accent-pink flex items-center justify-center text-white font-poppins font-extrabold text-xl shadow-md transform group-hover:rotate-6 transition-transform duration-300">
+                        MT
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="font-poppins font-bold text-lg text-brand-900 leading-none">Mintun</span>
+                        <span class="text-xs text-brand-500 font-medium tracking-wide">ม.5/8 Game Dev</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Nav Links -->
+                <div class="hidden md:flex items-center space-x-8 font-medium text-slate-700 text-sm">
+                    <a href="#about" class="hover:text-brand-600 transition-colors py-1 relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-brand-500 hover:after:w-full after:transition-all">About Me</a>
+                    <a href="#skills" class="hover:text-brand-600 transition-colors py-1 relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-brand-500 hover:after:w-full after:transition-all">Skills & Goals</a>
+                    <a href="#games" class="hover:text-brand-600 transition-colors py-1 relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-brand-500 hover:after:w-full after:transition-all">My Games</a>
+                    <a href="#contact" class="hover:text-brand-600 transition-colors py-1 relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-brand-500 hover:after:w-full after:transition-all">Contact</a>
+                </div>
+
+                <!-- Nav CTA Button -->
+                <div class="hidden md:flex items-center space-x-3">
+                    <a href="#games" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-brand-500 to-brand-600 hover:from-brand-600 hover:to-brand-700 text-white font-medium text-sm shadow-md hover:shadow-glow transition-all duration-300 flex items-center space-x-2 transform hover:-translate-y-0.5">
+                        <i class="fa-solid font-sm fa-gamepad"></i>
+                        <span>Play My Games</span>
+                    </a>
+                </div>
+
+                <!-- Mobile Hamburger Button -->
+                <button id="mobile-menu-btn" aria-label="Toggle menu" class="md:hidden p-2 rounded-lg text-slate-600 hover:text-brand-600 hover:bg-brand-50 focus:outline-none">
+                    <i class="fa-solid fa-bars text-xl" id="menu-icon"></i>
+                </button>
+            </div>
+
+            <!-- Mobile Menu Drawer -->
+            <div id="mobile-menu" class="hidden md:hidden mt-2 p-4 glass-card rounded-2xl border border-brand-100 flex flex-col space-y-3 shadow-lg transition-all">
+                <a href="#about" class="mobile-link px-4 py-2 rounded-xl hover:bg-brand-100/50 text-slate-700 font-medium">About Me</a>
+                <a href="#skills" class="mobile-link px-4 py-2 rounded-xl hover:bg-brand-100/50 text-slate-700 font-medium">Skills & Goals</a>
+                <a href="#games" class="mobile-link px-4 py-2 rounded-xl hover:bg-brand-100/50 text-slate-700 font-medium">My Games</a>
+                <a href="#contact" class="mobile-link px-4 py-2 rounded-xl hover:bg-brand-100/50 text-slate-700 font-medium">Contact</a>
+                <a href="#games" class="mobile-link text-center px-4 py-2.5 rounded-xl bg-brand-500 text-white font-medium shadow-sm">
+                    <i class="fa-solid fa-gamepad mr-2"></i>Play My Games
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- HERO SECTION (Split Hero) -->
+    <section id="hero" class="relative pt-6 pb-16 md:pt-12 md:pb-24 overflow-hidden">
+        <!-- Background Ambient Glows -->
+        <div class="absolute top-10 left-1/2 -translate-x-1/2 w-96 h-96 bg-brand-300/30 rounded-full blur-3xl -z-10 animate-pulse-glow"></div>
+        <div class="absolute bottom-0 right-10 w-80 h-80 bg-accent-pink/20 rounded-full blur-3xl -z-10"></div>
+
+        <div id="about" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                
+                <!-- Hero Left Column: Info & Content -->
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-brand-100/80 border border-brand-200 text-brand-700 text-xs sm:text-sm font-semibold shadow-sm">
+                        <span class="flex h-2.5 w-2.5 relative">
+                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-400 opacity-75"></span>
+                            <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-brand-600"></span>
+                        </span>
+                        <span>Student Game Developer • ชั้น ม.5/8</span>
+                    </div>
+
+                    <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 leading-tight">
+                        สวัสดีครับ! ผม <span class="gradient-text">มินตั้น</span> <br class="hidden sm:inline">
+                        นายธัชกร ตรีเมธา
+                    </h1>
+
+                    <p id="profile-bio" class="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                        <!-- Loaded dynamically from JS -->
+                    </p>
+
+                    <!-- Future Goal Banner -->
+                    <div class="p-4 rounded-2xl glass-card border-l-4 border-l-brand-500 flex items-start sm:items-center space-x-4 shadow-sm hover:shadow-md transition-shadow">
+                        <div class="w-12 h-12 rounded-xl bg-brand-100 text-brand-600 flex-shrink-0 flex items-center justify-center text-xl">
+                            <i class="fa-solid fa-graduation-cap"></i>
+                        </div>
+                        <div class="text-left">
+                            <span class="text-xs font-bold text-brand-500 uppercase tracking-wider block">Target Goal</span>
+                            <p id="profile-goal" class="font-semibold text-slate-800 text-sm sm:text-base">
+                                <!-- Loaded dynamically from JS -->
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Hero Quick CTA Buttons -->
+                    <div class="flex flex-wrap gap-4 justify-center lg:justify-start pt-2">
+                        <a href="#games" class="px-7 py-3.5 rounded-2xl bg-gradient-to-r from-brand-600 to-brand-500 hover:from-brand-700 hover:to-brand-600 text-white font-semibold shadow-lg hover:shadow-glow transition-all duration-300 transform hover:-translate-y-1 flex items-center space-x-3">
+                            <i class="fa-solid fa-rocket text-lg"></i>
+                            <span>สำรวจผลงานเกม</span>
+                        </a>
+                        <a href="#contact" class="px-7 py-3.5 rounded-2xl bg-white hover:bg-slate-50 text-slate-700 font-semibold border border-slate-200 shadow-sm hover:shadow transition-all duration-300 flex items-center space-x-2">
+                            <i class="fa-regular fa-paper-plane text-brand-500"></i>
+                            <span>ติดต่อผู้สร้าง</span>
+                        </a>
+                    </div>
+
+                    <!-- Quick Info Badges -->
+                    <div class="pt-4 flex flex-wrap justify-center lg:justify-start gap-6 text-slate-600 text-xs sm:text-sm font-medium">
+                        <div class="flex items-center space-x-2">
+                            <i class="fa-solid fa-code text-brand-500"></i>
+                            <span>Lua Scripting</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <i class="fa-solid fa-gamepad text-brand-500"></i>
+                            <span>Game Logic & Sim</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <i class="fa-solid fa-lightbulb text-brand-500"></i>
+                            <span>Flowchart Thought</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hero Right Column: Profile Image Showcase -->
+                <div class="lg:col-span-5 flex justify-center">
+                    <div class="relative max-w-sm sm:max-w-md w-full">
+                        <!-- Decorative Frame Behind -->
+                        <div class="absolute -inset-2 bg-gradient-to-tr from-brand-400 via-brand-300 to-accent-pink rounded-3xl blur-lg opacity-60 animate-float"></div>
+                        
+                        <div class="relative glass-card rounded-3xl p-5 shadow-2xl border border-white/60 text-center">
+                            <!-- Image Container -->
+                            <div class="relative aspect-square w-full rounded-2xl overflow-hidden bg-gradient-to-b from-brand-100 to-brand-200 group mb-4 border border-brand-200">
+                                <img id="profile-img" 
+                                     src="https://lh3.googleusercontent.com/d/1r5Rp9CKxodZYvTk7H3mfmuRhx3_mpBiJ" 
+                                     alt="มินตั้น - ธัชกร ตรีเมธา" 
+                                     class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                                     onerror="this.onerror=null; this.src='https://placehold.co/600x600/8B5CF6/ffffff?text=Mintun+(มินตั้น)';">
+                                <div class="absolute inset-0 bg-gradient-to-t from-brand-900/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+                                    <span class="text-white text-xs font-poppins font-semibold bg-brand-600/80 backdrop-blur-md px-3 py-1 rounded-lg">ม.5/8 Student & Dev</span>
+                                </div>
+                            </div>
+
+                            <!-- User Info Badge Under Image -->
+                            <div class="bg-white/90 rounded-xl p-3 border border-brand-100 shadow-sm flex items-center justify-between">
+                                <div class="text-left">
+                                    <h3 id="profile-name" class="font-bold text-slate-800 text-base">นายธัชกร ตรีเมธา</h3>
+                                    <p class="text-xs text-brand-600 font-medium">ชื่อเล่น: <span id="profile-nickname" class="font-bold">มินตั้น</span></p>
+                                </div>
+                                <span class="px-3 py-1 rounded-full bg-brand-100 text-brand-700 text-xs font-bold">
+                                    ม.5/8
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SKILLS SECTION (Bento Grid) -->
+    <section id="skills" class="py-16 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <h2 class="text-xs font-bold uppercase tracking-widest text-brand-600 mb-2">Capabilities & Hobbies</h2>
+                <p class="text-3xl font-extrabold text-slate-900 sm:text-4xl">ทักษะและความสนใจ (Skills)</p>
+                <div class="w-16 h-1 bg-brand-400 mx-auto rounded-full mt-3"></div>
+            </div>
+
+            <!-- Bento Grid Container -->
+            <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                
+                <!-- Card 1: Skill Lua Scripting (Large 2 cols) -->
+                <div class="md:col-span-2 glass-card rounded-3xl p-6 shadow-sm hover:shadow-md transition-all border border-brand-200/60 relative overflow-hidden group">
+                    <div class="absolute -right-6 -bottom-6 w-32 h-32 bg-brand-200/40 rounded-full blur-xl group-hover:scale-150 transition-transform"></div>
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="w-12 h-12 rounded-2xl bg-brand-500 text-white flex items-center justify-center text-2xl shadow-md">
+                            <i class="fa-solid fa-code"></i>
+                        </div>
+                        <span class="px-3 py-1 rounded-full bg-brand-100 text-brand-700 text-xs font-semibold">ระดับกลาง (Intermediate)</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-800 mb-2">เขียนภาษา Lua (Lua Scripting)</h3>
+                    <p class="text-sm text-slate-600 mb-4 leading-relaxed">
+                        สามารถเขียน Code ภาษา Lua ควบคุม Game Logic, ตัวละคร, ระบบไอเทม และอีเวนต์ต่าง ๆ ในเกมได้อย่างเรียบร้อยและมีโครงสร้าง
+                    </p>
+
+                    <!-- Lua Code Sample Preview Box -->
+                    <div class="bg-slate-900 rounded-2xl p-4 text-xs font-mono text-emerald-400 overflow-x-auto border border-slate-800 shadow-inner">
+                        <div class="flex items-center space-x-1.5 mb-2 text-slate-500 text-[10px]">
+                            <span class="w-2.5 h-2.5 rounded-full bg-red-500 inline-block"></span>
+                            <span class="w-2.5 h-2.5 rounded-full bg-yellow-500 inline-block"></span>
+                            <span class="w-2.5 h-2.5 rounded-full bg-green-500 inline-block"></span>
+                            <span class="ml-2 font-poppins">game_logic.lua</span>
+                        </div>
+                        <code>
+                            <span class="text-purple-400">local</span> function <span class="text-blue-300">cookRecipe</span>(item, time)<br>
+                            &nbsp;&nbsp;<span class="text-purple-400">if</span> item == <span class="text-amber-300">"SakuraRamen"</span> <span class="text-purple-400">then</span><br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;print(<span class="text-amber-300">"Cooking complete! Score +100"</span>)<br>
+                            &nbsp;&nbsp;<span class="text-purple-400">end</span><br>
+                            <span class="text-purple-400">end</span>
+                        </code>
+                    </div>
+                </div>
+
+                <!-- Card 2: Badminton Skill -->
+                <div class="glass-card rounded-3xl p-6 shadow-sm hover:shadow-md transition-all border border-brand-200/60 flex flex-col justify-between group">
+                    <div>
+                        <div class="w-12 h-12 rounded-2xl bg-accent-pink text-white flex items-center justify-center text-2xl shadow-md mb-4 group-hover:rotate-12 transition-transform">
+                            <i class="fa-solid fa-table-tennis-paddle-ball"></i>
+                        </div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-accent-pink block mb-1">Sport & Activity</span>
+                        <h3 class="text-xl font-bold text-slate-800 mb-2">ตีแบดมินตัน</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">
+                            ชอบเล่นกีฬาแบดมินตัน ช่วยฝึกความไว สายตา สมาธิ และแก้เครียดจากการเขียนโค้ด
+                        </p>
+                    </div>
+                    <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500 font-medium">
+                        <span><i class="fa-solid fa-bolt text-amber-500 mr-1"></i> Agility</span>
+                        <span><i class="fa-solid fa-heart text-red-400 mr-1"></i> Energy</span>
+                    </div>
+                </div>
+
+                <!-- Card 3: Game Design & Simulation -->
+                <div class="glass-card rounded-3xl p-6 shadow-sm hover:shadow-md transition-all border border-brand-200/60 flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-2xl bg-brand-400 text-white flex items-center justify-center text-2xl shadow-md mb-4">
+                            <i class="fa-solid fa-cubes"></i>
+                        </div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-brand-600 block mb-1">Creative</span>
+                        <h3 class="text-xl font-bold text-slate-800 mb-2">Game Mechanics Design</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">
+                            ออกแบบระบบเกม Simulation ทั้งระบบการทำอาหาร แข่งกับเวลา และระบบทำฟาร์ม
+                        </p>
+                    </div>
+                    <div class="mt-4 flex flex-wrap gap-1.5">
+                        <span class="px-2.5 py-1 rounded-lg bg-brand-50 text-brand-700 text-xs font-medium">Time Mgmt</span>
+                        <span class="px-2.5 py-1 rounded-lg bg-brand-50 text-brand-700 text-xs font-medium">Simulation</span>
+                    </div>
+                </div>
+
+                <!-- Card 4: Flowchart & Logic (Wide 2 cols) -->
+                <div class="md:col-span-2 glass-card rounded-3xl p-6 shadow-sm hover:shadow-md transition-all border border-brand-200/60 flex flex-col justify-between">
+                    <div class="flex items-start justify-between">
+                        <div>
+                            <div class="w-12 h-12 rounded-2xl bg-sky-500 text-white flex items-center justify-center text-2xl shadow-md mb-4">
+                                <i class="fa-solid fa-diagram-project"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-slate-800 mb-2">Flowchart & Algorithm Thinking</h3>
+                            <p class="text-sm text-slate-600 mb-4 leading-relaxed">
+                                วิเคราะห์ปัญหา วางลำดับขั้นตอนของระบบโปรแกรมด้วย Flowchart เพื่อให้เห็นภาพรวมของเงื่อนไขการทำงานอย่างเป็นระบบ ก่อนเริ่มเขียนโค้ดจริง
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-3 gap-3 text-center">
+                        <div class="p-2.5 rounded-xl bg-white/70 border border-brand-100">
+                            <i class="fa-solid fa-play text-brand-500 text-sm mb-1"></i>
+                            <span class="block text-xs font-semibold text-slate-700">Start / Stop</span>
+                        </div>
+                        <div class="p-2.5 rounded-xl bg-white/70 border border-brand-100">
+                            <i class="fa-solid fa-code-branch text-brand-500 text-sm mb-1"></i>
+                            <span class="block text-xs font-semibold text-slate-700">Condition</span>
+                        </div>
+                        <div class="p-2.5 rounded-xl bg-white/70 border border-brand-100">
+                            <i class="fa-solid fa-rotate text-brand-500 text-sm mb-1"></i>
+                            <span class="block text-xs font-semibold text-slate-700">Loop Logic</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 5: Computer Engineering Goal -->
+                <div class="md:col-span-2 glass-card rounded-3xl p-6 shadow-sm hover:shadow-md transition-all bg-gradient-to-br from-brand-600 via-brand-500 to-accent-pink text-white flex flex-col justify-between relative overflow-hidden">
+                    <div class="absolute top-0 right-0 -mt-4 -mr-4 w-32 h-32 bg-white/10 rounded-full blur-2xl"></div>
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="px-3 py-1 rounded-full bg-white/20 backdrop-blur-md text-white text-xs font-bold tracking-wider">
+                                <i class="fa-solid fa-bullseye mr-1"></i> Target Goal
+                            </span>
+                            <i class="fa-solid fa-microchip text-3xl opacity-80"></i>
+                        </div>
+                        <h3 class="text-2xl font-extrabold mb-2">มุ่งสู่วิศวกรรมคอมพิวเตอร์</h3>
+                        <p class="text-sm opacity-90 leading-relaxed mb-4">
+                            มุ่งมั่นศึกษาและสร้างสรรค์ผลงานด้านการเขียนโปรแกรมและการพัฒนาเกม เพื่อก้าวเข้าสู่การเรียนในคณะวิศวกรรมศาสตร์ สาขาวิศวกรรมคอมพิวเตอร์
+                        </p>
+                    </div>
+                    <div class="flex items-center justify-between pt-3 border-t border-white/20 text-xs font-medium">
+                        <span><i class="fa-solid fa-user-graduate mr-1.5"></i> ม.5/8 นักเรียนเตรียมวิศวะ</span>
+                        <span class="underline">Explore Work ↓</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- LEARNING / ACTIVITIES SECTION -->
+    <section class="py-12 relative bg-white/50 border-y border-brand-100/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-10">
+                <div>
+                    <span class="text-xs font-bold uppercase tracking-widest text-brand-600">Learning Journey</span>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1">สิ่งที่เรียนรู้และการพัฒนาผลงาน (Morning Class)</h2>
+                </div>
+                <p class="text-sm text-slate-500 mt-2 md:mt-0 max-w-md">
+                    ภาพรวมกระบวนการเรียนรู้และเปลี่ยนไอเดียให้กลายเป็นเกมplayable ในช่วงการเรียน
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5" id="learning-container">
+                <!-- Dynamically populated via JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- MY GAMES SECTION (Featured Card + Card Grid) -->
+    <section id="games" class="py-16 md:py-24 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- Section Header -->
+            <div class="text-center max-w-3xl mx-auto mb-10">
+                <span class="px-4 py-1.5 rounded-full bg-brand-100 text-brand-700 text-xs font-bold uppercase tracking-wider inline-block mb-3">
+                    <i class="fa-solid fa-gamepad mr-1.5"></i> Portfolio Showcase
+                </span>
+                <h2 class="text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight">
+                    เกมที่ฉันสร้าง <span class="gradient-text">(My Games)</span>
+                </h2>
+                <p class="text-slate-600 mt-3 text-base">
+                    รวบรวมผลงานเกมที่พัฒนาจากการเรียนรู้ สามารถคลิก "View Game" หรือ "Play Game" เพื่อเข้าสู่หน้าเกมจริงได้เลย!
+                </p>
+            </div>
+
+            <!-- Filter Buttons -->
+            <div class="flex flex-wrap justify-center gap-2 mb-10" id="game-filters">
+                <button data-filter="all" class="filter-btn active px-5 py-2 rounded-xl text-sm font-medium transition-all bg-brand-600 text-white shadow-md">
+                    ทั้งหมด (All)
+                </button>
+                <button data-filter="Simulation Game" class="filter-btn px-5 py-2 rounded-xl text-sm font-medium bg-white text-slate-600 border border-slate-200 hover:border-brand-300 transition-all">
+                    Simulation Game
+                </button>
+                <button data-filter="Educational Game" class="filter-btn px-5 py-2 rounded-xl text-sm font-medium bg-white text-slate-600 border border-slate-200 hover:border-brand-300 transition-all">
+                    Educational / Puzzle
+                </button>
+            </div>
+
+            <!-- Featured Game Showcase Container -->
+            <div id="featured-game-container" class="mb-12">
+                <!-- Dynamically populated via JS -->
+            </div>
+
+            <!-- Games Grid Container -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="games-grid-container">
+                <!-- Dynamically populated via JS -->
+            </div>
+
+            <!-- Empty State Helper (Hidden by default) -->
+            <div id="empty-state" class="hidden text-center py-16 glass-card rounded-3xl">
+                <i class="fa-solid fa-ghost text-5xl text-brand-300 mb-3"></i>
+                <h3 class="text-lg font-bold text-slate-700">ไม่พบเกมในหมวดหมู่นี้</h3>
+                <p class="text-sm text-slate-500">ลองเลือกหมวดหมู่อื่นเพื่อดูผลงานเกมครับ</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- GAME MODAL POPUP -->
+    <div id="game-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm transition-opacity duration-300">
+        <div class="glass-card max-w-2xl w-full rounded-3xl shadow-2xl border border-white/80 overflow-hidden transform transition-all scale-95 opacity-0" id="modal-card">
+            <!-- Modal Header / Image -->
+            <div class="relative h-56 sm:h-64 bg-slate-800 overflow-hidden">
+                <img id="modal-img" src="" alt="Game Title" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent"></div>
+                <button id="modal-close-btn" class="absolute top-4 right-4 w-10 h-10 rounded-full bg-slate-900/60 text-white hover:bg-slate-900 transition-colors flex items-center justify-center text-lg">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+                <div class="absolute bottom-4 left-6 right-6">
+                    <span id="modal-category" class="px-3 py-1 rounded-full bg-brand-500 text-white text-xs font-semibold mb-2 inline-block">Category</span>
+                    <h3 id="modal-title" class="text-2xl sm:text-3xl font-extrabold text-white">Game Title</h3>
+                </div>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="p-6 space-y-4">
+                <div class="flex items-center justify-between text-xs text-slate-500 border-b border-slate-100 pb-3">
+                    <span><i class="fa-solid fa-user text-brand-500 mr-1"></i> ผู้สร้าง: <strong id="modal-creator" class="text-slate-700">มินตั้น</strong></span>
+                    <span><i class="fa-regular fa-calendar text-brand-500 mr-1"></i> ปีที่สร้าง: <strong id="modal-year" class="text-slate-700">2569</strong></span>
+                </div>
+
+                <p id="modal-desc" class="text-slate-600 text-sm sm:text-base leading-relaxed">
+                    รายละเอียดเกม...
+                </p>
+
+                <!-- Modal Action Footer -->
+                <div class="pt-4 flex items-center justify-end space-x-3 border-t border-slate-100">
+                    <button id="modal-cancel-btn" class="px-5 py-2.5 rounded-xl border border-slate-200 text-slate-600 hover:bg-slate-50 font-medium text-sm transition-colors">
+                        ปิด
+                    </button>
+                    <a id="modal-play-link" href="#" target="_blank" rel="noopener noreferrer" class="px-6 py-2.5 rounded-xl bg-gradient-to-r from-brand-600 to-brand-500 hover:from-brand-700 hover:to-brand-600 text-white font-semibold text-sm shadow-md hover:shadow-glow transition-all flex items-center space-x-2">
+                        <span>เปิดเล่นเกม</span>
+                        <i class="fa-solid fa-external-link text-xs"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER SECTION (Multi-column Footer) -->
+    <footer id="contact" class="bg-slate-900 text-white pt-16 pb-12 relative overflow-hidden">
+        <!-- Ambient footer blur -->
+        <div class="absolute bottom-0 left-1/4 w-96 h-96 bg-brand-600/10 rounded-full blur-3xl"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-10 pb-12 border-b border-slate-800">
+                
+                <!-- Col 1: Brand Info (5 cols) -->
+                <div class="md:col-span-5 space-y-4">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-500 to-accent-pink flex items-center justify-center text-white font-poppins font-extrabold text-xl shadow-md">
+                            MT
+                        </div>
+                        <span class="font-poppins font-bold text-xl tracking-tight text-white">นายธัชกร ตรีเมธา (มินตั้น)</span>
+                    </div>
+                    <p class="text-slate-400 text-sm leading-relaxed max-w-sm">
+                        นักเรียนชั้นมัธยมศึกษาปีที่ 5/8 มีความตั้งใจศึกษาด้าน Game Development, Logic Algorithm และมุ่งมั่นสอบเข้าคณะวิศวกรรมศาสตร์ สาขาวิศวกรรมคอมพิวเตอร์
+                    </p>
+                    <div class="inline-flex items-center space-x-2 text-xs font-semibold px-3 py-1.5 rounded-lg bg-slate-800 text-brand-300 border border-slate-700">
+                        <i class="fa-solid fa-school text-brand-400"></i>
+                        <span>นักเรียนชั้น ม.5/8</span>
+                    </div>
+                </div>
+
+                <!-- Col 2: Navigation Links (3 cols) -->
+                <div class="md:col-span-3 space-y-3">
+                    <h4 class="text-sm font-bold uppercase tracking-wider text-brand-400">การนำทาง (Quick Links)</h4>
+                    <ul class="space-y-2 text-sm text-slate-300">
+                        <li><a href="#about" class="hover:text-brand-300 transition-colors"><i class="fa-solid fa-angle-right text-xs text-brand-500 mr-2"></i>About Me (เกี่ยวกับฉัน)</a></li>
+                        <li><a href="#skills" class="hover:text-brand-300 transition-colors"><i class="fa-solid fa-angle-right text-xs text-brand-500 mr-2"></i>Skills & Goals (ทักษะ)</a></li>
+                        <li><a href="#games" class="hover:text-brand-300 transition-colors"><i class="fa-solid fa-angle-right text-xs text-brand-500 mr-2"></i>My Games (ผลงานเกม)</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 3: Contact & Social Links (4 cols) -->
+                <div class="md:col-span-4 space-y-4">
+                    <h4 class="text-sm font-bold uppercase tracking-wider text-brand-400">ช่องทางติดต่อ (Contact)</h4>
+                    <div id="footer-social-links" class="space-y-2 text-sm">
+                        <!-- Dynamically populated or rendered based on available non-empty social links -->
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Bottom Copyright Bar -->
+            <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500">
+                <p id="footer-copyright">
+                    © 2026 นายธัชกร ตรีเมธา (มินตั้น) ม.5/8 All rights reserved.
+                </p>
+                <p class="mt-2 sm:mt-0">
+                    Designed with <i class="fa-solid fa-heart text-accent-pink mx-0.5"></i> Modern Blue Lavender Style
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT: Application Data & Logic -->
+    <script>
+        /*
+         * PORTFOLIO CONFIGURATION OBJECT (Editable)
+         * คุณสามารถแก้ไข เพิ่ม หรือลบข้อมูลใน Object นี้ได้ง่ายตามต้องการ
+         */
+        const PORTFOLIO_DATA = {
+            profile: {
+                name: "นายธัชกร ตรีเมธา",
+                nickname: "มินตั้น",
+                grade: "ม.5/8",
+                roleTitle: "Game Developer & High School Student",
+                shortBio: "สวัสดีครับ! ผมเป็นนักเรียน ม.5/8 ที่สนใจด้านการพัฒนาเกมและการเขียนโค้ด ชอบเปลี่ยนแนวคิดตรรกะจากการเรียนให้เป็นเกมที่เล่นสนุกและโต้ตอบได้จริง",
+                profileImage: "https://lh3.googleusercontent.com/d/1r5Rp9CKxodZYvTk7H3mfmuRhx3_mpBiJ",
+                futureGoal: "ติดวิศวะคอม (วิศวกรรมศาสตร์ สาขาวิศวกรรมคอมพิวเตอร์)",
+                skillsSummary: ["เขียนภาษา Lua ระดับกลาง", "ตีแบดมินตัน", "ออกแบบตรรกะเกม", "คิดเชิงอัลกอริทึม"]
+            },
+
+            // Step-by-step learning activities
+            learningActivities: [
+                {
+                    step: "01",
+                    title: "ศึกษา Logic & Flowchart",
+                    desc: "วิเคราะห์เงื่อนไขเกมและการทำงานของตัวละครด้วยแผนภาพ Flowchart",
+                    icon: "fa-diagram-project"
+                },
+                {
+                    step: "02",
+                    title: "เขียนโค้ดภาษา Lua",
+                    desc: "ฝึกเขียนคำสั่งสร้าง Mechanics ในเกม เช่น ระบบคะแนน และการจับเวลา",
+                    icon: "fa-code"
+                },
+                {
+                    step: "03",
+                    title: "ออกแบบ Game UI",
+                    desc: "จัดวางปุ่ม กราฟิก และบรรยากาศร้านอาหาร/ฟาร์มให้น่าเล่นสดใส",
+                    icon: "fa-palette"
+                },
+                {
+                    step: "04",
+                    title: "ทดสอบ & เผยแพร่",
+                    desc: "ปรับแก้บั๊ก ปรับสมดุลความยาก และแชร์ให้เพื่อนๆ ทดลองเล่น",
+                    icon: "fa-rocket"
+                }
+            ],
+
+            // Games List Data
+            games: [
+                {
+                    id: "game-1",
+                    title: "เชฟวิทย์ป่วนร้านซากุระ",
+                    creator: "มินตั้น",
+                    description: "เกมทำอาหารแข่งกับเวลา! สวมบทบาทเป็นเชฟที่ต้องรับออเดอร์ ปรุงอาหารตามลำดับขั้นตอนให้ทันเวลาในบรรยากาศร้านซากุระแสนอบอุ่น ทดสอบความไวและสมาธิ",
+                    category: "Simulation Game",
+                    year: "2569",
+                    featured: true, // Show in featured highlight card
+                    gameUrl: "https://gemini.google.com/share/d/1pGtNKCV8hsvvgfUW2JDX3tAhejCVsnHy?usp=sharing",
+                    buttonText: "View Game",
+                    // SVG/Canvas dynamic generated graphic background preview
+                    coverGradient: "from-pink-400 via-purple-400 to-indigo-500",
+                    badgeIcon: "fa-utensils"
+                },
+                {
+                    id: "game-2",
+                    title: "ฟาร์ม simulator",
+                    creator: "มินตั้น",
+                    description: "สวมบทบาทชาวไร่ปลูกผัก เลี้ยงสัตว์ และคอยกำจัดศัตรูพืช! บริหารจัดการฟาร์มของคุณให้เติบโตอย่างยั่งยืนพร้อมระบบอัปเกรดเครื่องมือ",
+                    category: "Simulation Game",
+                    year: "2569",
+                    featured: false,
+                    gameUrl: "https://gemini.google.com/share/d/1l_FrJnVjTdi1CN0JTVo6iJeIWU1VqOvs?usp=sharing",
+                    buttonText: "View Game",
+                    coverGradient: "from-emerald-400 via-teal-500 to-green-600",
+                    badgeIcon: "fa-wheat-awn"
+                },
+                {
+                    id: "game-3",
+                    title: "Flowchart Adventure",
+                    creator: "มินตั้น",
+                    description: "เกม Flowchart จำลองเหตุการณ์ ฝึกใช้หลักการคิดเป็นลำดับขั้นตอนแบบตรรกะและสนุกสนาน ช่วยให้ผู้เล่นเข้าใจพื้นฐานการเขียนโปรแกรมอย่างง่าย",
+                    category: "Educational Game",
+                    year: "2569",
+                    featured: false,
+                    gameUrl: "#", // Can update link later
+                    buttonText: "Play Game",
+                    coverGradient: "from-blue-400 via-brand-400 to-purple-600",
+                    badgeIcon: "fa-brain"
+                }
+            ],
+
+            socialLinks: {
+                email: "", // Empty fields are dynamically hidden per prompt instructions
+                facebook: "",
+                instagram: "",
+                tiktok: "",
+                github: "",
+                other: ""
+            },
+
+            copyright: "© 2026 นายธัชกร ตรีเมธา (มินตั้น) ม.5/8 • Portfolio นำเสนอผลงานเกมจากการเรียน"
+        };
+
+        /*
+         * RENDER FUNCTIONS
+         */
+        
+        // 1. Render Hero Profile Info
+        function renderProfile() {
+            document.getElementById("profile-bio").textContent = PORTFOLIO_DATA.profile.shortBio;
+            document.getElementById("profile-goal").textContent = PORTFOLIO_DATA.profile.futureGoal;
+            document.getElementById("profile-name").textContent = PORTFOLIO_DATA.profile.name;
+            document.getElementById("profile-nickname").textContent = PORTFOLIO_DATA.profile.nickname;
+            
+            const profileImg = document.getElementById("profile-img");
+            if (PORTFOLIO_DATA.profile.profileImage) {
+                profileImg.src = PORTFOLIO_DATA.profile.profileImage;
+            }
+        }
+
+        // 2. Render Learning Activities Steps
+        function renderLearning() {
+            const container = document.getElementById("learning-container");
+            container.innerHTML = "";
+
+            PORTFOLIO_DATA.learningActivities.forEach(act => {
+                const card = document.createElement("div");
+                card.className = "glass-card rounded-2xl p-5 border border-brand-100 hover:shadow-md transition-all relative overflow-hidden group";
+                card.innerHTML = `
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-2xl font-extrabold text-brand-300 font-poppins group-hover:text-brand-500 transition-colors">${act.step}</span>
+                        <div class="w-9 h-9 rounded-xl bg-brand-100 text-brand-600 flex items-center justify-center text-base">
+                            <i class="fa-solid ${act.icon}"></i>
+                        </div>
+                    </div>
+                    <h3 class="font-bold text-slate-800 text-base mb-1">${act.title}</h3>
+                    <p class="text-xs text-slate-500 leading-relaxed">${act.desc}</p>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        // 3. Render Games (Featured & Grid)
+        function renderGames(filterCategory = "all") {
+            const featuredContainer = document.getElementById("featured-game-container");
+            const gridContainer = document.getElementById("games-grid-container");
+            const emptyState = document.getElementById("empty-state");
+
+            featuredContainer.innerHTML = "";
+            gridContainer.innerHTML = "";
+
+            const filteredGames = PORTFOLIO_DATA.games.filter(g => {
+                if (filterCategory === "all") return true;
+                return g.category.toLowerCase().includes(filterCategory.toLowerCase());
+            });
+
+            if (filteredGames.length === 0) {
+                emptyState.classList.remove("hidden");
+                return;
+            } else {
+                emptyState.classList.add("hidden");
+            }
+
+            // Find featured game or default to first
+            const featuredGame = filteredGames.find(g => g.featured) || (filterCategory === "all" ? filteredGames[0] : null);
+
+            if (featuredGame && filterCategory === "all") {
+                // Render Featured Card
+                const featCard = document.createElement("div");
+                featCard.className = "glass-card rounded-3xl p-6 sm:p-8 shadow-lg border border-brand-200/80 bg-gradient-to-br from-white via-brand-50/30 to-purple-50/40 relative overflow-hidden";
+                featCard.innerHTML = `
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                        <div class="lg:col-span-7 space-y-4">
+                            <div class="flex flex-wrap items-center gap-2">
+                                <span class="px-3 py-1 rounded-full bg-accent-pink/20 text-accent-pink text-xs font-bold uppercase tracking-wider border border-accent-pink/30">
+                                    <i class="fa-solid fa-star mr-1"></i> Featured Game
+                                </span>
+                                <span class="px-3 py-1 rounded-full bg-brand-100 text-brand-700 text-xs font-semibold">
+                                    ${featuredGame.category}
+                                </span>
+                                <span class="text-xs text-slate-400 font-medium">ปี ${featuredGame.year}</span>
+                            </div>
+
+                            <h3 class="text-2xl sm:text-4xl font-extrabold text-slate-900 leading-tight">
+                                ${featuredGame.title}
+                            </h3>
+
+                            <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+                                ${featuredGame.description}
+                            </p>
+
+                            <div class="flex items-center space-x-3 text-xs text-slate-500">
+                                <span><i class="fa-solid fa-user text-brand-500 mr-1"></i> ผู้สร้าง: <strong>${featuredGame.creator}</strong></span>
+                                <span>•</span>
+                                <span><i class="fa-solid fa-code text-brand-500 mr-1"></i> Lua / Game Logic</span>
+                            </div>
+
+                            <div class="pt-2 flex items-center space-x-3">
+                                <button onclick="openGameModal('${featuredGame.id}')" class="px-6 py-3 rounded-2xl bg-gradient-to-r from-brand-600 to-brand-500 hover:from-brand-700 hover:to-brand-600 text-white font-semibold text-sm shadow-md hover:shadow-glow transition-all duration-300 flex items-center space-x-2">
+                                    <i class="fa-solid fa-play text-xs"></i>
+                                    <span>${featuredGame.buttonText}</span>
+                                </button>
+                                <a href="${featuredGame.gameUrl}" target="_blank" class="px-5 py-3 rounded-2xl bg-white hover:bg-slate-50 text-slate-700 font-medium text-sm border border-slate-200 transition-colors flex items-center space-x-1.5">
+                                    <span>ลิงก์ตรง</span>
+                                    <i class="fa-solid fa-arrow-up-right-from-square text-xs text-slate-400"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Graphic Cover Banner -->
+                        <div class="lg:col-span-5">
+                            <div class="aspect-video lg:aspect-square rounded-2xl bg-gradient-to-tr ${featuredGame.coverGradient} p-6 text-white flex flex-col justify-between shadow-xl relative overflow-hidden group">
+                                <div class="absolute -right-10 -bottom-10 w-40 h-40 bg-white/10 rounded-full blur-xl group-hover:scale-125 transition-transform"></div>
+                                <div class="flex justify-between items-start">
+                                    <div class="w-12 h-12 rounded-xl bg-white/20 backdrop-blur-md flex items-center justify-center text-2xl">
+                                        <i class="fa-solid ${featuredGame.badgeIcon}"></i>
+                                    </div>
+                                    <span class="text-xs font-poppins font-bold bg-black/20 backdrop-blur-md px-3 py-1 rounded-full">Interactive</span>
+                                </div>
+                                <div class="space-y-1">
+                                    <span class="text-xs opacity-80 uppercase tracking-wider font-poppins">Portfolio Title</span>
+                                    <h4 class="text-xl font-bold font-poppins">${featuredGame.title}</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                featuredContainer.appendChild(featCard);
+            }
+
+            // Render Remaining Games in Grid
+            filteredGames.forEach(game => {
+                if (filterCategory === "all" && game.featured) return; // Skip featured in grid if all selected
+
+                const card = document.createElement("div");
+                card.className = "glass-card rounded-3xl p-5 shadow-sm hover:shadow-xl transition-all duration-300 border border-brand-100 flex flex-col justify-between group transform hover:-translate-y-1";
+                
+                card.innerHTML = `
+                    <div>
+                        <!-- Game Cover Artwork Placeholder -->
+                        <div class="aspect-video w-full rounded-2xl bg-gradient-to-tr ${game.coverGradient} p-4 text-white flex flex-col justify-between mb-4 shadow-md relative overflow-hidden">
+                            <div class="flex justify-between items-center">
+                                <span class="px-2.5 py-1 rounded-lg bg-black/20 backdrop-blur-md text-[10px] font-semibold uppercase">
+                                    ${game.category}
+                                </span>
+                                <i class="fa-solid ${game.badgeIcon} text-lg opacity-80"></i>
+                            </div>
+                            <div>
+                                <span class="text-[11px] opacity-75 block">Created: ${game.year}</span>
+                                <h4 class="text-lg font-bold">${game.title}</h4>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center justify-between text-xs text-slate-400 mb-2">
+                            <span><i class="fa-regular fa-user mr-1"></i>${game.creator}</span>
+                            <span class="px-2 py-0.5 rounded bg-brand-50 text-brand-600 font-medium">${game.year}</span>
+                        </div>
+
+                        <h3 class="text-xl font-bold text-slate-800 mb-2 group-hover:text-brand-600 transition-colors">
+                            ${game.title}
+                        </h3>
+
+                        <p class="text-xs sm:text-sm text-slate-600 line-clamp-3 leading-relaxed mb-4">
+                            ${game.description}
+                        </p>
+                    </div>
+
+                    <div class="pt-3 border-t border-slate-100 flex items-center justify-between">
+                        <button onclick="openGameModal('${game.id}')" class="w-full py-2.5 rounded-xl bg-brand-50 hover:bg-brand-500 text-brand-700 hover:text-white font-semibold text-xs transition-all duration-200 flex items-center justify-center space-x-2">
+                            <span>${game.buttonText}</span>
+                            <i class="fa-solid fa-chevron-right text-[10px]"></i>
+                        </button>
+                    </div>
+                `;
+                gridContainer.appendChild(card);
+            });
+        }
+
+        // 4. Modal Interactions
+        function openGameModal(gameId) {
+            const game = PORTFOLIO_DATA.games.find(g => g.id === gameId);
+            if (!game) return;
+
+            document.getElementById("modal-title").textContent = game.title;
+            document.getElementById("modal-desc").textContent = game.description;
+            document.getElementById("modal-creator").textContent = game.creator;
+            document.getElementById("modal-year").textContent = game.year;
+            document.getElementById("modal-category").textContent = game.category;
+            
+            const playLink = document.getElementById("modal-play-link");
+            if (game.gameUrl && game.gameUrl !== "#") {
+                playLink.href = game.gameUrl;
+                playLink.classList.remove("pointer-events-none", "opacity-50");
+            } else {
+                playLink.href = "#";
+                playLink.classList.add("pointer-events-none", "opacity-50");
+            }
+
+            // Set placeholder image based on gradient cover
+            const img = document.getElementById("modal-img");
+            img.src = `https://placehold.co/800x450/8B5CF6/ffffff?text=${encodeURIComponent(game.title)}`;
+
+            const modal = document.getElementById("game-modal");
+            const modalCard = document.getElementById("modal-card");
+            
+            modal.classList.remove("hidden");
+            setTimeout(() => {
+                modalCard.classList.remove("scale-95", "opacity-0");
+                modalCard.classList.add("scale-100", "opacity-100");
+            }, 10);
+        }
+
+        function closeGameModal() {
+            const modal = document.getElementById("game-modal");
+            const modalCard = document.getElementById("modal-card");
+
+            modalCard.classList.remove("scale-100", "opacity-100");
+            modalCard.classList.add("scale-95", "opacity-0");
+            
+            setTimeout(() => {
+                modal.classList.add("hidden");
+            }, 200);
+        }
+
+        // 5. Render Footer Contact Social Links dynamically
+        function renderFooter() {
+            const socialContainer = document.getElementById("footer-social-links");
+            const links = PORTFOLIO_DATA.socialLinks;
+            socialContainer.innerHTML = "";
+
+            let hasAnySocial = false;
+
+            const socialConfig = [
+                { key: 'email', label: 'Email', icon: 'fa-envelope' },
+                { key: 'facebook', label: 'Facebook', icon: 'fa-facebook', isBrand: true },
+                { key: 'instagram', label: 'Instagram', icon: 'fa-instagram', isBrand: true },
+                { key: 'tiktok', label: 'TikTok', icon: 'fa-tiktok', isBrand: true },
+                { key: 'github', label: 'GitHub', icon: 'fa-github', isBrand: true },
+                { key: 'other', label: 'Website อื่นๆ', icon: 'fa-globe' }
+            ];
+
+            socialConfig.forEach(item => {
+                const url = links[item.key];
+                if (url && url.trim() !== "") {
+                    hasAnySocial = true;
+                    const a = document.createElement("a");
+                    a.href = url;
+                    a.target = "_blank";
+                    a.className = "flex items-center space-x-2 text-slate-300 hover:text-brand-300 transition-colors py-1";
+                    a.innerHTML = `
+                        <i class="${item.isBrand ? 'fa-brands' : 'fa-solid'} ${item.icon} w-5 text-brand-400"></i>
+                        <span>${item.label}</span>
+                    `;
+                    socialContainer.appendChild(a);
+                }
+            });
+
+            // If no custom social links are set, show student default contact note gracefully
+            if (!hasAnySocial) {
+                socialContainer.innerHTML = `
+                    <div class="p-3 rounded-xl bg-slate-800/80 border border-slate-700 text-xs text-slate-400 leading-relaxed">
+                        <i class="fa-solid fa-graduation-cap text-brand-400 mr-1.5"></i>
+                        ผลงานนักเรียนชั้น ม.5/8 ติดต่อผ่านสถานศึกษาหรือช่องทางที่ได้รับอนุญาต
+                    </div>
+                `;
+            }
+
+            document.getElementById("footer-copyright").textContent = PORTFOLIO_DATA.copyright;
+        }
+
+        /*
+         * INITIALIZATION & EVENT LISTENERS
+         */
+        window.addEventListener("DOMContentLoaded", () => {
+            // Render view components
+            renderProfile();
+            renderLearning();
+            renderGames("all");
+            renderFooter();
+
+            // Mobile menu toggle
+            const mobileBtn = document.getElementById("mobile-menu-btn");
+            const mobileMenu = document.getElementById("mobile-menu");
+            const menuIcon = document.getElementById("menu-icon");
+
+            mobileBtn.addEventListener("click", () => {
+                mobileMenu.classList.toggle("hidden");
+                if (mobileMenu.classList.contains("hidden")) {
+                    menuIcon.className = "fa-solid fa-bars text-xl";
+                } else {
+                    menuIcon.className = "fa-solid fa-xmark text-xl";
+                }
+            });
+
+            // Close mobile menu when clicking any link inside
+            document.querySelectorAll(".mobile-link").forEach(link => {
+                link.addEventListener("click", () => {
+                    mobileMenu.classList.add("hidden");
+                    menuIcon.className = "fa-solid fa-bars text-xl";
+                });
+            });
+
+            // Filter buttons click handler
+            const filterBtns = document.querySelectorAll(".filter-btn");
+            filterBtns.forEach(btn => {
+                btn.addEventListener("click", () => {
+                    filterBtns.forEach(b => {
+                        b.classList.remove("active", "bg-brand-600", "text-white", "shadow-md");
+                        b.classList.add("bg-white", "text-slate-600");
+                    });
+                    btn.classList.add("active", "bg-brand-600", "text-white", "shadow-md");
+                    btn.classList.remove("bg-white", "text-slate-600");
+
+                    const filterValue = btn.getAttribute("data-filter");
+                    renderGames(filterValue);
+                });
+            });
+
+            // Modal Close handlers
+            document.getElementById("modal-close-btn").addEventListener("click", closeGameModal);
+            document.getElementById("modal-cancel-btn").addEventListener("click", closeGameModal);
+            document.getElementById("game-modal").addEventListener("click", (e) => {
+                if (e.target.id === "game-modal") closeGameModal();
+            });
+
+            // Navbar shadow on scroll
+            window.addEventListener("scroll", () => {
+                const header = document.getElementById("main-header");
+                if (window.scrollY > 20) {
+                    header.classList.add("py-1");
+                } else {
+                    header.classList.remove("py-1");
+                }
+            });
+        });
+    </script>
+</body>
+</html>
